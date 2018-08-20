@@ -12,19 +12,21 @@ typedef struct Book {
 void printHeader(int total);
 void printMenu();
 void addNewBook(Book books[], int *total);
-
 void showAllBooks(Book books[], int total);
+void populateBooks(Book books[]);
 
 int main() {
 
 	int op = 0;
-	int total = 0;
+	int total = 6;
 	Book books[20];
+
+	populateBooks(books);
 
 	do{
 		printMenu(total);
 		printf("\nOption: ");
-		scanf("%d", &op);
+		scanf("%i", &op);
 
 		switch(op){
 		case 1:
@@ -237,5 +239,35 @@ void showAllBooks(Book books[], int total) {
 			break;
 		}
 	} while (op != 99);
+}
+void populateBooks(Book books[]){
+
+	strcpy(books[0].title,  "Seja Foda");
+	strcpy(books[0].author, "Caio Carneiro");
+	books[0].pages = 255;
+
+	strcpy(books[1].title, "Termodinamica");
+	strcpy(books[1].author, "Matheus A");
+	books[1].pages = 120;
+
+	strcpy(books[2].title, "A Garota no Gelo");
+	strcpy(books[2].author, "Robert Brynoza");
+	books[2].pages = 70;
+
+	strcpy(books[3].title, "Eleanor e Park");
+	strcpy(books[3].author, "Rainbow Rowell");
+	books[3].pages = 364;
+
+	strcpy(books[4].title, "O Homem de Giz");
+	strcpy(books[4].author, "C.J. Tudor");
+	books[4].pages = 240;
+
+	strcpy(books[5].title, "O Acidente");
+	strcpy(books[5].author, "Desconhecido");
+	books[5].pages = 320;
+
+	strcpy(books[6].title, "Rainbow");
+	strcpy(books[6].author, "M.S. Fayes");
+	books[6].pages = 99;
 }
 
