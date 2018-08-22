@@ -163,7 +163,7 @@ void showAllBooks(Book books[], int total) {
 	int op = 50;
 	int offset = 0;
 	int step = 5;
-	int j, k;
+	int i, j, k;
 	int index;
 	int pags;
 	char txt_book[60];
@@ -182,14 +182,14 @@ void showAllBooks(Book books[], int total) {
 				j = total - offset;
 		}
 		k = 0;
-		for(int i = 0; i < j; i++, k++) {
+		for(i = 0; i < j; i++, k++) {
 			index = offset + i;
 			sprintf(txt_book, "%d - %s by %s - %d pages", index, books[index].title, books[index].author, books[index].pages);
 
 			printLine("", 'L');
 			printLine(txt_book, 'L');
 		}
-		for(int i = step; i > k; i--) {
+		for(i = step; i > k; i--) {
 			printLine("", 'L');
 			printLine("", 'L');
 		}
