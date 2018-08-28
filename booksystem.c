@@ -119,12 +119,12 @@ void addNewBook(Book books[], int *total) {
 		switch(op) {
 		case 1:
 			printf("Title: ");
-			scanf("%s", title);
+			scanf(" %[^\n]", title);
 			op = 50;
 			break;
 		case 2:
 			printf("Author: ");
-			scanf("%s", author);
+			scanf(" %[^\n]", author);
 			op = 50;
 			break;
 		case 3:
@@ -152,7 +152,7 @@ void addNewBook(Book books[], int *total) {
 		case 50:
 		default:
 			printf("Option: ");
-			scanf("%d", &op);
+			scanf(" %d", &op);
 			break;
 		}
 
