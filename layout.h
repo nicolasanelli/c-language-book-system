@@ -8,6 +8,8 @@
 #ifndef BOOKSYSTEM_LAYOUT_H_
 #define BOOKSYSTEM_LAYOUT_H_
 
+#define SIZE 60
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,14 +22,14 @@ void error(char *content);
 
 void printStarLine() {
 	printf("\t");
-	for (int i = 0; i<60; i++){
+	for (int i = 0; i<SIZE; i++){
 		printf("*");
 	}
 	printf("\n");
 }
 void printLine(char *content, char align) {
 	int size;
-	int rest = 59;
+	int rest = SIZE - 1;
 	int writed = 0;
 	int aux = 0;
 	int i;
@@ -49,7 +51,7 @@ void printLine(char *content, char align) {
 		case 'R':
 			printf("*  ");
 			writed += 3;
-			aux = 57 - (size + 2);
+			aux = (SIZE - 3) - (size + 2);
 			for (i = 0; i < aux; i++) {
 				printf(" ");
 			}
@@ -65,7 +67,7 @@ void printLine(char *content, char align) {
 		case 'C':
 			printf("*  ");
 			writed += 3;
-			aux = 27 - size/2;
+			aux = ((SIZE/2) - 3) - size/2;
 			for (i = 0; i < aux; i++) {
 				printf(" ");
 			}
