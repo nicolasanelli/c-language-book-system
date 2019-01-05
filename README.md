@@ -1,8 +1,8 @@
 # Library System
 
-This project is a C language project, made for example of a terminal application with some specifics skills needed from C language.
+This project is a C language project, made for example of a terminal application with some specifics skills from C language.
 
-For running it you need to compile the library and the main source of project using the below command:
+For running it you need to compile the library and the main source code file of project using the below command:
 ```
 $ gcc layout.h booksystem.c -o BookSystem
 ```
