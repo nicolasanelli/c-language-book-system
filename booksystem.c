@@ -151,7 +151,7 @@ void addNewBook(Book books[], int *total) {
 			break;
 		case 50:
 		default:
-			printf("Option: ");
+			printf("\nOption: ");
 			scanf(" %d", &op);
 			break;
 		}
@@ -234,7 +234,7 @@ void showAllBooks(Book books[], int total) {
 			break;
 		case 50:
 		default:
-			printf("Option: ");
+			printf("\nOption: ");
 			scanf("%d", &op);
 			break;
 		}

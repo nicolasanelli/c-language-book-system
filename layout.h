@@ -8,7 +8,7 @@
 #ifndef BOOKSYSTEM_LAYOUT_H_
 #define BOOKSYSTEM_LAYOUT_H_
 
-#define SIZE 60
+#define SIZE 64
 
 #include <stdio.h>
 #include <stdlib.h>
