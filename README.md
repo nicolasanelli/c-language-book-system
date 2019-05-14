@@ -37,7 +37,10 @@ Considering that this system was developed in C, the use is around choosing opti
 ## Authors
 * **Nicolas Anelli** - [Github](https://github.com/NicolasAnelli).
 
-### License
+### Considerations:
+Feel free for forking this project, and submiting any improvement.
+
+## License
 MIT License
 
 Copyright (c) 2019 Nicolas Anelli
