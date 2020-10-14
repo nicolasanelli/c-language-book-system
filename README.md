@@ -26,13 +26,15 @@ For Windows users, just double click on executable program.
 ## How to use
 Considering that this system was developed in C, the use is around choosing options by tiping a number of the option, then pressing Enter key to confirm.
 
-## Todo
-* [X] - Create a layout helper library
-* [X] - Describe a better README documentation
-* [_] - Create a file persistence library
-* [_] - Allow to edit records
-* [_] - Allow to remove records
-* [_] - Create a search by book/author name
+## Things to increase
+
+- [x] Create a layout helper library
+- [x] Do better readme documentation
+- [ ] Create file persistence library
+- [ ] Allow edit records
+- [ ] Allow remove records
+- [ ] Search books by author
+
 
 ## Authors
 * **Nicolas Anelli** - [Github](https://github.com/NicolasAnelli).
