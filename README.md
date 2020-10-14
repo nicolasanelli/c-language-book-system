@@ -10,7 +10,7 @@ For this code, you will need a C language compiler.
 
 For running it you need to compile the library and the main source code file of project using the below command:
 ```
-$ gcc booksystem.c -o BookSystem
+$ make
 ```
 
 This will create a new executable in the project root path named system (or system.exe on windows). Now you only need to run it:

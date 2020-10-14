@@ -11,7 +11,7 @@ typedef struct Book {
 
 void printHeader(int total);
 void printMenu();
-void addNewBook(Book books[], int *total);
+int  addNewBook(Book books[], int *total);
 void showAllBooks(Book books[], int total);
 void populateBooks(Book books[]);
 
@@ -19,6 +19,7 @@ int main() {
 
 	int op = 0;
 	int total = 6;
+   int retCode = 0;
 	Book books[20];
 
 	populateBooks(books);
@@ -30,7 +31,11 @@ int main() {
 
 		switch(op){
 		case 1:
-			addNewBook(books, &total);
+			retCode = addNewBook(books, &total);
+         if(retCode){
+            printf("Memory allocation failed\n");
+            exit(1);
+         }
 			break;
 		case 2:
 			showAllBooks(books, total);
@@ -45,6 +50,7 @@ int main() {
 	return 0;
 }
 
+
 void printHeader(int total) {
 
 	char txt_total_books[25];
@@ -57,7 +63,10 @@ void printHeader(int total) {
 	printLine(txt_total_books, 'R');
 	printStarLine();
 }
+
+
 void printMenu(int total) {
+   int i;
 	cls();
 	printHeader(total);
 	printLine("Main menu", 'L');
@@ -66,18 +75,15 @@ void printMenu(int total) {
 	printLine("1. Add new book", 'L');
 	printLine("", 'L');
 	printLine("2. Show all books", 'L');
-	printLine("", 'L');
-	printLine("", 'L');
-	printLine("", 'L');
-	printLine("", 'L');
-	printLine("", 'L');
-	printLine("", 'L');
-	printLine("", 'L');
-	printLine("", 'L');
+   for(i = 0; i < 8; i++){
+      printLine("", 'L');
+   }
 	printLine("99 - Exit", 'R');
 	printStarLine();
 }
-void addNewBook(Book books[], int *total) {
+
+
+int addNewBook(Book books[], int *total) {
 
 	int op = 50;
 	char *title;
@@ -86,12 +92,14 @@ void addNewBook(Book books[], int *total) {
 	char txt_title[100];
 	char txt_author[100];
 	char txt_pages[100];
-
+   int i;
 
 	title = (char*)malloc(80);
 	author = (char*)malloc(80);
 	pages = (int*)malloc(sizeof(int));
-
+   if( !(title && author && pages)){
+      return 1;
+   }
 	do{
 		sprintf(txt_title, "1. Title: %s", title);
 		sprintf(txt_author, "2. Author: %s", author);
@@ -107,10 +115,9 @@ void addNewBook(Book books[], int *total) {
 		printLine(txt_author, 'L');
 		printLine("", 'L');
 		printLine(txt_pages, 'L');
-		printLine("", 'L');
-		printLine("", 'L');
-		printLine("", 'L');
-		printLine("", 'L');
+		for(i =0; i < 4; i++){
+         printLine("", 'L');
+      }
 		printLine("0 - Save", 'L');
 		printLine("", 'L');
 		printLine("99 - Back to menu", 'R');
@@ -157,6 +164,7 @@ void addNewBook(Book books[], int *total) {
 		}
 
 	} while (op != 99);
+   return 0;
 }
 void showAllBooks(Book books[], int total) {
 
