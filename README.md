@@ -10,10 +10,10 @@ For this code, you will need a C language compiler.
 
 For running it you need to compile the library and the main source code file of project using the below command:
 ```
-$ gcc booksystem.c -o BookSystem
+$ make
 ```
 
-This will create a new executable in the project root path named system (or system.exe on windows). Now you only need to run it:
+This will create a new executable in the project root path named BookSystem (or BookSystem.exe on windows). Now you only need to run it:
 
 For Linux/MAC users:
 
@@ -24,7 +24,7 @@ For Linux/MAC users:
 For Windows users, just double click on executable program.
 
 ## How to use
-Considering that this system was developed in C, the use is around choosing options by tiping a number of the option, then pressing Enter key to confirm.
+Considering that this system was developed in C, the use is around choosing options by typing a number of the option, then pressing Enter key to confirm.
 
 ## Things to increase
 
