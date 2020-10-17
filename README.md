@@ -24,16 +24,17 @@ For Linux/MAC users:
 For Windows users, just double click on executable program.
 
 ## How to use
-Considering that this system was developed in C, the use is around choosing options by typing a number of the option, then pressing Enter key to confirm.
+Considering that this system was developed in C, the use is around choosing options by tiping a number of the option, then pressing Enter key to confirm.
 
 ## Things to increase
 
 - [x] Create a layout helper library
 - [x] Do better readme documentation
-- [ ] Create file persistence library
+- [x] Create file persistence library
 - [ ] Allow edit records
 - [ ] Allow remove records
 - [ ] Search books by author
+- [ ] Improve memory management (realloc array when full)
 
 
 ## Authors

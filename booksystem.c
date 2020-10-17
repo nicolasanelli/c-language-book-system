@@ -2,27 +2,23 @@
 #include <stdlib.h>
 #include <string.h>
 #include "layout.h"
+#include "database.h"
 
-typedef struct Book {
-	char title[80];
-	char author[80];
-	int pages;
-} Book;
 
 void printHeader(int total);
 void printMenu();
 int  addNewBook(Book books[], int *total);
 void showAllBooks(Book books[], int total);
-void populateBooks(Book books[]);
 
 int main() {
 
+   char * filename = "database.dat";
+   FILE * database = initDatabase(filename);
 	int op = 0;
-	int total = 6;
+	int total;
    int retCode = 0;
-	Book books[20];
-
-	populateBooks(books);
+   Book * books2 = NULL;
+   total = readDatabase(&books2,database);
 
 	do{
 		printMenu(total);
@@ -31,22 +27,34 @@ int main() {
 
 		switch(op){
 		case 1:
-			retCode = addNewBook(books, &total);
+			retCode = addNewBook(books2, &total);
          if(retCode){
             printf("Memory allocation failed\n");
             exit(1);
          }
 			break;
 		case 2:
-			showAllBooks(books, total);
+			showAllBooks(books2, total);
 			break;
 		case 99:
 		default:
 			cls();
+         /*
+          * TODO: Do something with unsupported options
+          */
+         op = 99;
 		}
 
 	} while (op != 99);
 
+   //Save to file at exit.
+   //TODO: Check if data changed to see if rewriting the
+   //database is needed.
+
+   freopen(filename, "wb", database);
+   writeDatabase(books2, (size_t)total, database);
+   fclose(database);
+   free(books2);
 	return 0;
 }
 
@@ -83,20 +91,20 @@ void printMenu(int total) {
 }
 
 
-int addNewBook(Book books[], int *total) {
+int addNewBook(Book * books, int *total) {
 
 	int op = 50;
 	char *title;
 	char *author;
 	int *pages;
-	char txt_title[100];
-	char txt_author[100];
-	char txt_pages[100];
+	char txt_title[80];
+	char txt_author[80];
+	char txt_pages[80];
    int i;
 
-	title = (char*)malloc(80);
-	author = (char*)malloc(80);
-	pages = (int*)malloc(sizeof(int));
+	title = (char*)calloc(80,1);
+	author = (char*)calloc(80,1);
+	pages = (int*)calloc(1,sizeof(int));
    if( !(title && author && pages)){
       return 1;
    }
@@ -140,20 +148,11 @@ int addNewBook(Book books[], int *total) {
 			op = 50;
 			break;
 		case 0:
-			strcpy(books[*total].title, title);
-			strcpy(books[*total].author, author);
-			books[*total].pages = (int)*pages;
-
-			title = (char*)malloc(80);
-			author = (char*)malloc(80);
-			pages = (int*)malloc(sizeof(int));
-
-			printf("Title: %s \n", books[*total].title);
-			printf("Author: %s \n", books[*total].author);
-			printf("Pages: %d \n", books[*total].pages);
+			strcpy((books+(*total))->title, title);
+			strcpy((books+(*total))->author, author);
+         (books+(*total))->pages = *pages;
 
 			*total += 1;
-
 			op = 50;
 			break;
 		case 50:
@@ -164,9 +163,12 @@ int addNewBook(Book books[], int *total) {
 		}
 
 	} while (op != 99);
+         free(title);
+         free(author);
+         free(pages);
    return 0;
 }
-void showAllBooks(Book books[], int total) {
+void showAllBooks(struct Book * books, int total) {
 
 	int op = 50;
 	int offset = 0;
@@ -192,7 +194,9 @@ void showAllBooks(Book books[], int total) {
 		k = 0;
 		for(i = 0; i < j; i++, k++) {
 			index = offset + i;
-			sprintf(txt_book, "%d - %s by %s - %d pages", index, books[index].title, books[index].author, books[index].pages);
+			sprintf(txt_book, "%d - %s by %s - %d pages", index,
+                 (books+index)->title, (books+index)->author,
+                 (books+index)->pages);
 
 			printLine("", 'L');
 			printLine(txt_book, 'L');
@@ -248,34 +252,3 @@ void showAllBooks(Book books[], int total) {
 		}
 	} while (op != 99);
 }
-void populateBooks(Book books[]){
-
-	strcpy(books[0].title,  "Seja Foda");
-	strcpy(books[0].author, "Caio Carneiro");
-	books[0].pages = 255;
-
-	strcpy(books[1].title, "Termodinamica");
-	strcpy(books[1].author, "Matheus A");
-	books[1].pages = 120;
-
-	strcpy(books[2].title, "A Garota no Gelo");
-	strcpy(books[2].author, "Robert Brynoza");
-	books[2].pages = 70;
-
-	strcpy(books[3].title, "Eleanor e Park");
-	strcpy(books[3].author, "Rainbow Rowell");
-	books[3].pages = 364;
-
-	strcpy(books[4].title, "O Homem de Giz");
-	strcpy(books[4].author, "C.J. Tudor");
-	books[4].pages = 240;
-
-	strcpy(books[5].title, "O Acidente");
-	strcpy(books[5].author, "Desconhecido");
-	books[5].pages = 320;
-
-	strcpy(books[6].title, "Rainbow");
-	strcpy(books[6].author, "M.S. Fayes");
-	books[6].pages = 99;
-}
-
